@@ -79,9 +79,9 @@ public class TernarySearchTree {
         if (node == null)
             return false;
 
-        if (word[index] < node.getStoreChar())
+        if (Character.toLowerCase(word[index]) < Character.toLowerCase(node.getStoreChar()))
             return search(node.getLeftChild(), word, index);
-        else if (word[index] > node.getStoreChar())
+        else if (Character.toLowerCase(word[index]) > Character.toLowerCase(node.getStoreChar()))
             return search(node.getRightChild(), word, index);
         else
         {
@@ -102,9 +102,9 @@ public class TernarySearchTree {
         if (node == null)
             return null;
 
-        if (word[index] < node.getStoreChar())
+        if (Character.toLowerCase(word[index]) < Character.toLowerCase(node.getStoreChar()))
             return findNode(node.getLeftChild(), word, index);
-        else if (word[index] > node.getStoreChar())
+        else if (Character.toLowerCase(word[index]) > Character.toLowerCase(node.getStoreChar()))
             return findNode(node.getRightChild(), word, index);
         else
         {

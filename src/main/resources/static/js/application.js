@@ -1,28 +1,36 @@
-// https://angular-ui.github.io/
+var myApp = angular.module("autoComplete", []);
 
-// setup app and pass ui.bootstrap as dep
-var myApp = angular.module("autoComplete", ["ui.bootstrap"]);
 
-// define factory for data source
-myApp.factory("States", function(){
-  var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Dakota", "North Carolina", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+myApp.controller('searchController', ['$scope', '$http', '$timeout',function($scope, $http, $timeout) {
 
-  return states;
+    $scope.textChanged = function() {
+        $scope.isLoading = true;
 
-});
+       var url = '/search/' + $scope.prefix;
 
-// setup controller and pass data source
-myApp.controller("TypeaheadCtrl", function($scope, States) {
+        console.log("testesttest");
 
-	$scope.selected = undefined;
+        console.log($scope.prefix);
 
-	$scope.states = States;
+        $http({
+                method: 'GET',
+                url: url
+              }).then(function successCallback(response) {
 
-});
+                          console.log(response.data);
 
-myApp.controller('Search', function($scope, $http) {
-    $http.get('/search').
-        then(function(response) {
-            $scope.items = response.data;
-        });
-});
+                            $('#query').typeahead({
+                                    local: response.data
+                            });
+                            $('.tt-query').css('background-color','#fff');
+
+                          $scope.isLoading=false;
+
+                        }, function errorCallback(error) {
+                          $scope.isLoading=false;
+                     });
+    };
+
+
+}]);
+
