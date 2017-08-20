@@ -1,0 +1,54 @@
+dependency-reduced-pom.xml
+
+# use glob syntax.
+syntax: glob
+*.ser
+*.class
+*~
+*.bak
+#*.off
+*.old
+
+# eclipse conf file
+.settings
+.classpath
+.project
+.manager
+.scala_dependencies
+
+# idea
+.idea
+*.iml
+dependency-reduced-pom.xml
+
+# vert.x
+.vertx
+
+.DS_Store
+
+# building
+target
+build
+null
+tmp*
+dist
+test-output
+build.log
+
+# other scm
+.svn
+.CVS
+.hg*
+
+# switch to regexp syntax.
+#  syntax: regexp
+#  ^\.pc/
+
+
+*.retry
+*.metadata
+dist
+metastore_db
+
+#docker
+m2repo
